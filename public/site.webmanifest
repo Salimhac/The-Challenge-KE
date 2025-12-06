@@ -1,0 +1,29 @@
+{
+  "name": "Kenya Campus Challenge",
+  "short_name": "Kenya Campus Challenge",
+  "description": "TikTok Dance Competition for Kenyan Campuses",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#667eea",
+  "background_color": "#ffffff",
+  "scope": "/"
+}
+EOF
