@@ -51,53 +51,132 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // In your signIn and signUp functions in AuthContext.jsx
-const signIn = async (email, password) => {
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
+  // FIXED: Added createProfileIfMissing function
+  const createProfileIfMissing = async (userId, email, nickname, campusId) => {
+    try {
+      // Check if profile already exists
+      const { data: existingProfile } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('id', userId)
+        .single();
 
-    if (error) throw error;
-    
-    // Fetch profile after sign in
-    if (data.user) {
-      await fetchProfile(data.user.id);
-    }
-    
-    return { success: true, user: data.user };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
+      if (!existingProfile) {
+        // Create profile with default values
+        const { error } = await supabase
+          .from('profiles')
+          .insert({
+            id: userId,
+            email: email,
+            nickname: nickname || `User_${userId.substring(0, 8)}`,
+            campus_id: campusId || null,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          });
 
-const signUp = async (email, password, nickname, campusId) => {
-  try {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          nickname,
-          campus_id: campusId
+        if (error) {
+          console.error('Manual profile creation failed:', error);
+          // If nickname is the issue, try without it
+          if (error.message.includes('nickname')) {
+            await supabase
+              .from('profiles')
+              .insert({
+                id: userId,
+                email: email,
+                nickname: `User_${userId.substring(0, 8)}`,
+                campus_id: campusId || null,
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString()
+              });
+          }
+        } else {
+          console.log('Profile created manually');
+          // Refresh profile
+          await fetchProfile(userId);
         }
       }
-    });
-
-    if (error) throw error;
-    
-    // Auto sign in after sign up
-    if (data.user) {
-      await signIn(email, password); // This will fetch profile too
+    } catch (error) {
+      console.error('Profile check/create error:', error);
     }
-    
-    return { success: true, user: data.user };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
+  };
+
+  // UPDATED: Fixed signIn function
+  const signIn = async (email, password) => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
+      
+      // Fetch profile after sign in
+      if (data.user) {
+        await fetchProfile(data.user.id);
+      }
+      
+      return { success: true, user: data.user };
+    } catch (error) {
+      return { success: false, error: error.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // UPDATED: Fixed signUp function - This is the main fix!
+  const signUp = async (email, password, nickname, campusId) => {
+    setLoading(true);
+    try {
+      console.log('Starting signup for:', email);
+      
+      // Ensure nickname is not empty
+      const userNickname = nickname || `User_${Math.random().toString(36).substr(2, 8)}`;
+      
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            nickname: userNickname,
+            campus_id: campusId || null
+          }
+        }
+      });
+
+      if (error) {
+        console.error('Signup auth error:', error);
+        throw error;
+      }
+
+      console.log('Auth signup successful, user ID:', data.user?.id);
+      
+      // IMPORTANT: Create profile if database trigger fails
+      if (data.user) {
+        // Wait a bit for the trigger
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Check and create profile if missing
+        await createProfileIfMissing(data.user.id, email, userNickname, campusId);
+        
+        // Auto sign in after successful signup
+        const signInResult = await signIn(email, password);
+        if (!signInResult.success) {
+          console.warn('Auto sign-in failed:', signInResult.error);
+        }
+      }
+      
+      return { success: true, user: data.user };
+    } catch (error) {
+      console.error('Signup error:', error);
+      return { success: false, error: error.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const signOut = async () => {
+    setLoading(true);
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
@@ -106,6 +185,8 @@ const signUp = async (email, password, nickname, campusId) => {
       return { success: true };
     } catch (error) {
       return { success: false, error: error.message };
+    } finally {
+      setLoading(false);
     }
   };
 
