@@ -19,7 +19,7 @@ const Home = () => {
         .gte('end_date', new Date().toISOString().split('T')[0])
         .order('start_date', { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       setCurrentChallenge(data);

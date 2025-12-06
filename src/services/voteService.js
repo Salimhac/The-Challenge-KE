@@ -11,7 +11,7 @@ export const voteService = {
         .eq('entry_id', entryId)
         .eq('user_id', userId)
         .gte('voted_at', new Date(Date.now() - VOTING_COOLDOWN_MS).toISOString())
-        .single();
+        .maybeSingle();
 
       if (existingVote) {
         return { success: false, error: 'You have already voted for this entry today' };
@@ -71,7 +71,7 @@ export const voteService = {
         .eq('entry_id', entryId)
         .eq('user_id', userId)
         .gte('voted_at', new Date(Date.now() - VOTING_COOLDOWN_MS).toISOString())
-        .single();
+        .maybeSingle();
 
       return !!data;
     } catch  {

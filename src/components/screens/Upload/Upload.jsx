@@ -38,7 +38,7 @@ const Upload = () => {
           .gte('end_date', new Date().toISOString().split('T')[0])
           .order('start_date', { ascending: false })
           .limit(1)
-          .single()
+          .maybeSingle()
       ]);
 
       if (campusesRes.error) throw campusesRes.error;
@@ -130,7 +130,7 @@ const Upload = () => {
         .select('id')
         .eq('user_id', user.id)
         .eq('challenge_id', currentChallenge.id)
-        .single();
+        .maybeSingle();
 
       if (existingEntry) {
         alert('You have already submitted an entry for this challenge');

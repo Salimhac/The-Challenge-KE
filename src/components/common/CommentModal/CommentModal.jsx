@@ -42,7 +42,7 @@ const CommentModal = ({ entry, onClose }) => {
         .from('profiles')
         .select('nickname, avatar_url')
         .eq('id', payload.new.user_id)
-        .single()
+        .maybeSingle()
         .then(({ data: profile }) => {
           if (profile) {
             setComments(prev => [{

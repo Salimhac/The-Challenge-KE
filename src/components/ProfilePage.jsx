@@ -35,7 +35,7 @@ export default function ProfilePage() {
         .from('profiles')
         .select('*, campuses(name, type, location)')
         .eq('id', userId)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       setProfile(data);

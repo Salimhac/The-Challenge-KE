@@ -91,7 +91,7 @@ const fetchProfile = async (userId) => {
         updated_at: new Date().toISOString()
       })
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error('Failed to create profile:', error);

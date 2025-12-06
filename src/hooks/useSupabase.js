@@ -72,7 +72,7 @@ export const useSupabase = () => {
         .gte('end_date', today)
         .order('start_date', { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
     });
   }, [executeQuery]);
 
@@ -114,7 +114,7 @@ export const useSupabase = () => {
         .from('profiles')
         .select('*, campuses (name, type)')
         .eq('id', userId)
-        .single();
+        .maybeSingle();
     });
   }, [executeQuery]);
 
@@ -127,7 +127,7 @@ export const useSupabase = () => {
         .from('entries')
         .insert([entryData])
         .select()
-        .single();
+        .maybeSingle();
     });
   }, [executeQuery]);
 
@@ -140,7 +140,7 @@ export const useSupabase = () => {
         .from('comments')
         .insert([commentData])
         .select()
-        .single();
+        .maybeSingle();
     });
   }, [executeQuery]);
 
@@ -189,7 +189,7 @@ export const useSupabase = () => {
         .eq('entry_id', entryId)
         .eq('user_id', userId)
         .gte('voted_at', today + 'T00:00:00')
-        .single();
+        .maybeSingle();
     }, { showLoading: false });
   }, [executeQuery]);
 
@@ -284,7 +284,7 @@ export const useSupabase = () => {
         .update({ avatar_url: publicUrl })
         .eq('id', userId)
         .select()
-        .single();
+        .maybeSingle();
     });
   }, [executeQuery]);
 
