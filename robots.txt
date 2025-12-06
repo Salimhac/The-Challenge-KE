@@ -1,0 +1,9 @@
+# public/robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api/
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Crawl-delay: 10 (optional, if you have heavy traffic)

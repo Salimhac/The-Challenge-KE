@@ -1,0 +1,54 @@
+:root {
+    /* Kenyan colors inspired by flag */
+    --color-ke-black: #000000;
+    --color-ke-red: #BB0000;
+    --color-ke-green: #006600;
+    --color-ke-white: #FFFFFF;
+    
+    /* Brand colors */
+    --color-primary: #FF4D94; /* Vibrant pink similar to TikTok */
+    --color-secondary: #00B2FF; /* Bright blue */
+    --color-accent: #FFD166; /* Gold/yellow accent */
+    
+    /* Neutral colors */
+    --color-background: #FFFFFF;
+    --color-surface: #F8F9FA;
+    --color-text: #1A1A1A;
+    --color-text-light: #666666;
+    --color-border: #E1E5E9;
+    
+    /* Feedback colors */
+    --color-success: #00C853;
+    --color-warning: #FF9800;
+    --color-error: #FF5252;
+    --color-info: #2196F3;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+    
+    /* Breakpoints */
+    --breakpoint-mobile: 320px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1024px;
+}

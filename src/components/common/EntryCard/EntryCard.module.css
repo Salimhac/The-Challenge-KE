@@ -1,0 +1,239 @@
+.card {
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.header {
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.username {
+  font-weight: 700;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+}
+
+.separator {
+  opacity: 0.5;
+}
+
+.campus {
+  background: var(--color-surface);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge {
+  background: var(--color-accent);
+  color: var(--color-ke-black);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 177.78%; /* 16:9 Aspect Ratio */
+  background: var(--color-ke-black);
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.content {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex: 1;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  line-height: 1.3;
+}
+
+.description {
+  color: var(--color-text-light);
+  line-height: 1.5;
+  font-size: 0.95rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: text;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.stats {
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.statItem {
+  flex: 1;
+}
+
+.voteButton,
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm);
+  border: none;
+  background: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.voteButton:hover,
+.actionButton:hover {
+  background: var(--color-surface);
+  transform: scale(1.05);
+}
+
+.voteButton.voted {
+  color: var(--color-primary);
+}
+
+.voteIcon,
+.actionIcon {
+  font-size: 1.25rem;
+}
+
+.voteCount,
+.actionCount {
+  font-weight: 700;
+}
+
+.actionLabel {
+  font-size: 0.875rem;
+}
+
+.footer {
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.challengeTag {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.platform {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-light);
+  font-size: 0.875rem;
+}
+
+.platformIcon {
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .header {
+    padding: var(--space-md);
+  }
+  
+  .content {
+    padding: var(--space-md);
+  }
+  
+  .stats {
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+  
+  .footer {
+    padding: var(--space-md);
+  }
+  
+  .voteButton,
+  .actionButton {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  
+  .voteCount,
+  .actionCount,
+  .actionLabel {
+    font-size: 0.75rem;
+  }
+}

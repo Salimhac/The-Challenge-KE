@@ -1,0 +1,359 @@
+.container {
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+.header {
+  background: var(--color-background);
+  padding: var(--space-lg) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.backButton,
+.uploadButton {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: all var(--transition-base);
+}
+
+.backButton {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.backButton:hover {
+  background: var(--color-border);
+}
+
+.uploadButton {
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  color: white;
+}
+
+.uploadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 77, 148, 0.3);
+}
+
+.headerContent {
+  flex: 1;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.filters {
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.sortButtons {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.sortButton {
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid var(--color-border);
+  background: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  color: var(--color-text-light);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.sortButton:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.sortButton.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.stats {
+  display: flex;
+  gap: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.stat {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.entriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.loading {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--color-text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-2xl);
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: var(--space-lg);
+}
+
+.emptyState h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+}
+
+.emptyState p {
+  color: var(--color-text-light);
+  margin-bottom: var(--space-xl);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.uploadCta {
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-base);
+}
+
+.uploadCta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(255, 77, 148, 0.4);
+}
+
+.loadMoreContainer {
+  text-align: center;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.loadMoreButton {
+  background: var(--color-background);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-base);
+}
+
+.loadMoreButton:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.noChallenge {
+  text-align: center;
+  padding: var(--space-2xl);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.noChallenge h2 {
+  font-size: 2rem;
+  color: var(--color-error);
+  margin-bottom: var(--space-md);
+}
+
+.noChallenge p {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-xl);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .entriesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+  
+  .backButton,
+  .uploadButton {
+    order: 2;
+    width: 100%;
+  }
+  
+  .headerContent {
+    order: 1;
+  }
+  
+  .sortButtons {
+    justify-content: center;
+  }
+  
+  .stats {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+}
+/* Add these styles to your EntriesFeed.module.css */
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  position: relative;
+  z-index: 100; /* Lower than dropdown */
+}
+
+.container {
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-bottom: 2px solid #eaeaea;
+  margin-top: 60px; /* Space for profile dropdown */
+  position: relative;
+  z-index: 10; /* Lower than dropdown */
+}
+
+.backButton {
+  background: none;
+  border: none;
+  color: #667eea;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.backButton:hover {
+  background: #f0f4ff;
+}
+
+.profileSection {
+  position: relative;
+  z-index: 1000; /* Higher than header */
+}
+
+/* Ensure dropdown appears above the header */
+.profile-dropdown {
+  position: absolute;
+  top: 50px; /* Adjust based on your dropdown trigger height */
+  right: 0;
+  z-index: 1001; /* Highest in the stacking context */
+  /* ... rest of your dropdown styles ... */
+}
+
+/* Rest of your existing styles remain the same */
+.headerContent {
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.subtitle {
+  margin: 5px 0 0 0;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.uploadButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.uploadButton:hover {
+  transform: translateY(-2px);
+}

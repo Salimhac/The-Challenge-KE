@@ -1,0 +1,236 @@
+/* components/CommunityGuidelinesModal.css */
+.guidelines-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.guidelines-modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.guidelines-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f8f9fa;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.guidelines-modal-close:hover {
+  background: #e9ecef;
+  color: #333;
+  transform: rotate(90deg);
+}
+
+.guidelines-modal-content h2 {
+  color: #2d3748;
+  font-size: 28px;
+  margin: 0 0 30px 0;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #667eea;
+  text-align: center;
+}
+
+.guidelines-section {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-left: 4px solid #667eea;
+  transition: transform 0.3s ease;
+}
+
+.guidelines-section:hover {
+  transform: translateX(5px);
+  background: #edf2f7;
+}
+
+.guidelines-section h3 {
+  color: #2d3748;
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guidelines-section p {
+  color: #4a5568;
+  line-height: 1.7;
+  margin: 0 0 15px 0;
+  font-size: 15px;
+}
+
+.guidelines-section ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.guidelines-section li {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  font-size: 15px;
+  position: relative;
+}
+
+.guidelines-section li::before {
+  content: "•";
+  color: #667eea;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* Specific icon colors for different sections */
+.guidelines-section:nth-child(2) h3 { /* Respectful */
+  color: #38a169;
+}
+
+.guidelines-section:nth-child(3) h3 { /* Content */
+  color: #3182ce;
+}
+
+.guidelines-section:nth-child(4) h3 { /* Voting */
+  color: #d69e2e;
+}
+
+.guidelines-section:nth-child(5) h3 { /* Comments */
+  color: #805ad5;
+}
+
+.guidelines-section:nth-child(6) h3 { /* Consequences */
+  color: #e53e3e;
+}
+
+.guidelines-section:nth-child(7) h3 { /* Reporting */
+  color: #dd6b20;
+}
+
+.guidelines-agree-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  margin: 30px auto 0;
+  transition: all 0.3s ease;
+  width: auto;
+  min-width: 200px;
+}
+
+.guidelines-agree-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.guidelines-agree-button:active {
+  transform: translateY(0);
+}
+
+/* Scrollbar styling */
+.guidelines-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.guidelines-modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.guidelines-modal-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.guidelines-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .guidelines-modal-content {
+    padding: 25px;
+    max-height: 90vh;
+  }
+  
+  .guidelines-modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .guidelines-section {
+    padding: 16px 20px;
+  }
+  
+  .guidelines-section h3 {
+    font-size: 16px;
+  }
+  
+  .guidelines-agree-button {
+    padding: 14px 30px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .guidelines-modal-content {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .guidelines-modal-content h2 {
+    font-size: 22px;
+  }
+}
