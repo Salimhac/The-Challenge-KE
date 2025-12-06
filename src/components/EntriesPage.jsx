@@ -74,7 +74,9 @@ export default function EntriesPage() {
       }
     }
   };
-
+console.log('Current user:', user?.id);
+console.log('Auth loading:', authLoading);
+console.log('Entries count:', entries.length);
   // Show loading while auth is checking
   if (authLoading) {
     return (
